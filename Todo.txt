@@ -1,0 +1,16 @@
+Todo
+---------------Models--------------
+Patients
+Notificateur
+Medicament
+fiche(numero, description, antecedents, pathologies)
+Suivi
+effets(liste des effets indesirables)
+---------------Vues--------------
+Login
+Homepage(Liste des notifications)
+show(Detailler une notification)
+create(Creer une notification)
+
+---------------Controller--------------
+NotificationController
