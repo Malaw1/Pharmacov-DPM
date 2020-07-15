@@ -43,7 +43,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Profession') }}</label>
 
                             <div class="col-md-6">
-                                <select name="corps" id="corps" class="form-control @error('name') is-invalid @enderror">
+                                <select name="proffession" id="corps" class="form-control @error('name') is-invalid @enderror">
                                     <option value="Medecin">Medecin</option>
                                     <option value="Pharmacien">Pharmacien</option>
                                     <option value="Dentiste">Dentiste</option>
