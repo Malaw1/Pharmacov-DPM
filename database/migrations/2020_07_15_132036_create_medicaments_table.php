@@ -21,7 +21,7 @@ class CreateMedicamentsTable extends Migration
             $table->string('forme');
             $table->string('lot');
             $table->string('fabricant');
-            $table->string('plante_medicinale');
+            $table->string('plante_medicinale')->nullable();
             $table->datetime('date_prise');
             $table->datetime('date_fin_prise');
             $table->unsignedBigInteger('fiche_id');

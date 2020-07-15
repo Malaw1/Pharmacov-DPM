@@ -17,9 +17,9 @@ class CreateSuivisTable extends Migration
             $table->bigIncrements('id');
             $table->datetime('apparition_effet');
             $table->datetime('disparition_effet');
-            $table->string('readministration');
-            $table->string('reapparition');
-            $table->string('traitement_correcteur');
+            $table->string('readministration')->nullable();
+            $table->string('reapparition')->nullable();
+            $table->string('traitement_correcteur')->nullable();
             $table->string('suivi_patient');
             $table->string('evolution');
             $table->unsignedBigInteger('fiche_id');

@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('specialite');
             $table->string('telephone');
             $table->string('structure');
+            $table->string('proffession');
             $table->string('service');
             $table->string('matricule');
             $table->string('email')->unique();

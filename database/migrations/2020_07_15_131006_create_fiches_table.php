@@ -17,7 +17,7 @@ class CreateFichesTable extends Migration
             $table->bigIncrements('id');
             $table->string('numero');
             $table->string('description');
-            $table->string('antecedents');
+            $table->string('antecedents')->nullable();
             $table->string('pathologies');
             $table->timestamps();
         });
