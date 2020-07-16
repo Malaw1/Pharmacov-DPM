@@ -19,12 +19,14 @@ class CreateMedicamentsTable extends Migration
             $table->string('voie');
             $table->string('posologie');
             $table->string('forme');
+            $table->string('dci');
             $table->string('lot');
             $table->string('fabricant');
             $table->string('plante_medicinale')->nullable();
             $table->datetime('date_prise');
             $table->datetime('date_fin_prise');
-
+            $table->unsignedBigInteger('fiche_id');
+            $table->foreign('fiche_id')->references('id')->on('fiches');
             $table->timestamps();
         });
     }

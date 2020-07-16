@@ -43,6 +43,12 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
+                                                <label for="email" class="control-label">Email</label>
+                                                <div class="col-sm-12">
+                                                    <input type="text" name="email" id="email" class="form-control " required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="fonction" class="control-label">Fonction</label>
                                                 <div class="col-sm-12">
                                                     <input type="text" name="fonction" id="fonction" class="form-control " required>
@@ -50,15 +56,23 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="adresse" class="control-label">Adresse</label>
+                                                <label for="specialite" class="control-label">specialite</label>
                                                 <div class="col-sm-12">
-                                                    <input type="text" name="adresse" id="adresse" class="form-control " required>
+                                                    <input type="text" name="specialite" id="specialite" class="form-control " required>
                                                 </div>
                                             </div>
+
                                             <div class="form-group">
                                                 <label for="tel" class="control-label">Téléphone</label>
                                                 <div class="col-sm-12">
                                                     <input type="text" name="tel" id="tel" class="form-control " required>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="structure" class="control-label">Structure</label>
+                                                <div class="col-sm-12">
+                                                    <input type="text" name="structure" id="structure" class="form-control " required>
                                                 </div>
                                             </div>
                                 </div> <input type="button" name="next" class="next action-button" value="Next Step" />

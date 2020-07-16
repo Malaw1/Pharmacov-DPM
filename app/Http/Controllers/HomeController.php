@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Fiche;
+use App\Patient;
+use App\Medicament;
+
 
 class HomeController extends Controller
 {
@@ -23,6 +27,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $fiche = Fiche::join('medicaments', 'fiches.id', '=', 'medicaments.fiche_id')
+            ->join('patients', 'fiches.id', '=', 'patients.fiche_id' )->get();
+            
+        return view('home', ['fiche' => $fiche]);
     }
 }
