@@ -19,6 +19,10 @@ class CreateFichesTable extends Migration
             $table->string('description');
             $table->string('antecedents')->nullable();
             $table->string('pathologies');
+            $table->unsignedBigInteger('patient_id');
+            $table->foreign('patient_id')->references('id')->on('patients');
+            $table->unsignedBigInteger('medicament_id');
+            $table->foreign('medicament_id')->references('id')->on('medicaments');
             $table->timestamps();
         });
     }

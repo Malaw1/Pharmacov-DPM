@@ -22,8 +22,7 @@ class CreatePatientsTable extends Migration
             $table->string('poids');
             $table->string('taille');
             $table->string('facteur_associe')->nullable();
-            $table->unsignedBigInteger('fiche_id');
-            $table->foreign('fiche_id')->references('id')->on('fiches');
+
             $table->timestamps();
         });
     }
