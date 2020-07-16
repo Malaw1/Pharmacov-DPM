@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Fiche;
+use App\Patient;
+use App\Notificateur;
+use App\Medicament;
+use App\Suivi;
 use Illuminate\Http\Request;
 
 class FicheController extends Controller
@@ -60,32 +64,56 @@ class FicheController extends Controller
             'numero' => $numero,
             'description' => $request->input('description'),
             'antecedents' => $request->input('antecedents'),
-            'status' => $request->input('pathologies'),
+            'pathologies' => $request->input('pathologies'),
         ]);
 
         $notificateur= Notificateur::create([
-            'pre' => $numero,
-            'description' => $request->input('description'),
-            'antecedents' => $request->input('antecedents'),
-            'status' => $request->input('pathologies'),
+            'prenom' => $request->input('prenom'),
+            'nom' => $request->input('nom'),
+            'proffession' => $request->input('proffession'),
+            'specialite' => $request->input('specialite'),
+            'telephone' => $request->input('telephone'),
+            'email' => $request->input('email'),
+            'structure' => $request->input('structure'),
+            'service' => $request->input('service'),
+            'fiche_id' => $fiche->id,
         ]);
 
 
-        $produit= Produit::create([
-            'nom_medicament' => $request->input('nom_medicament'),
-            'forme_pharmaceutique' => $request->input('forme_pharmaceutique'),
+        $medicament= Medicament::create([
+            'produit' => $request->input('produit'),
+            'voie' => $request->input('voie'),
             'dci' => $request->input('dci'),
-            'phone' => $request->input('phone'),
-            'adresse' => $request->input('adresse'),
-            'presentation' => $request->input('presentation'),
-            'indication' => $request->input('indication'),
-            'classe_therapeutique' => $request->input('classe_therapeutique'),
-            'enreg_id' => $enreg->id,
-            'pght' => $request->input('pght'),
-            'email' => $request->input('email'),
-            'manufacturer' => $request->input('manufacturer'),
-            'excipient'     => $request->input('excipient'),
-            'excipient_notoire' => $request->input('excipient_notoire')
+            'posologie' => $request->input('posologie'),
+            'forme' => $request->input('forme'),
+            'lot' => $request->input('lot'),
+            'fabricant' => $request->input('fabricant'),
+            'date_prise' => $request->input('date_prise'),
+            'fiche_id' => $fiche->id,
+            'date_fin_prise' => $request->input('date_fin_prise'),
+            'plante_medicinale' => $request->input('plante_medicinale'),
+        ]);
+
+        $patient= Patient::create([
+            'numero_dossier' => $request->input('numero_dossier'),
+            'initial' => $request->input('initial'),
+            'age' => $request->input('age'),
+            'sexe' => $request->input('sexe'),
+            'poids' => $request->input('poids'),
+            'taille' => $request->input('taille'),
+            'facteur_associe' => $request->input('facteur_associe'),
+            'fiche_id' => $fiche->id,
+        ]);
+
+        $suivi= Suivi::create([
+            'apparition_effet' => $request->input('apparition_effet'),
+            'disparition_effet' => $request->input('disparition_effet'),
+            'readministration' => $request->input('readministration'),
+            'reapparition' => $request->input('reapparition'),
+            'traitement_correcteur' => $request->input('traitement_correcteur'),
+            'suivi_patient' => $request->input('suivi_patient'),
+            'evolution' => $request->input('evolution'),
+            'fiche_id' => $fiche->id,
         ]);
 
     }
@@ -98,7 +126,14 @@ class FicheController extends Controller
      */
     public function show(Fiche $fiche)
     {
-        //
+        $fiche = Fiche::join('notificateurs', 'notificateurs.fiche_id', '=', 'fiches.id')
+        ->join('medicaments', 'medicaments.fiche_id', '=', 'fiches.id')
+        ->join('patients', 'patients.fiche_id', '=', 'fiches.id')
+        ->join('suivis', 'suivis.fiche_id', '=', 'fiches.id')
+        ->where('fiches.id', $fiche->id)
+        ->first();
+
+        return view('notifications.show', ['fiche' => $fiche]);
     }
 
     /**
