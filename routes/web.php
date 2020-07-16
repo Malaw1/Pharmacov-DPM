@@ -11,6 +11,11 @@
 |
 */
 
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Facades\Route;
+
+>>>>>>> first comit
 Route::get('/', function () {
     return view('welcome');
 });
