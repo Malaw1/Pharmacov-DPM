@@ -14,7 +14,7 @@ class FicheController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -24,7 +24,7 @@ class FicheController extends Controller
      */
     public function create()
     {
-        //
+        return view('notifications.index');
     }
 
     /**
@@ -35,7 +35,59 @@ class FicheController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $code = 'SN-DPM-';
+        $numero = 0;
+        $a = date('d');
+        $b = date('m');
+        $c = date('y');
+        $fich_id = fiche::All()->last();
+
+        $id = $fich_id->id+1;
+
+        if($fich_id == Null){
+            $numero= $code.'0001'.$a.''.$b.''.$c;
+        }elseif($fich_id->id < 10){
+            $numero= $code.'000'.$id.''.$a.''.$b.''.$c;
+        }elseif($fich_id->id < 99){
+            $numero= $code.'00'.$id.''.$a.''.$b.''.$c;
+        }elseif($fich_id->id < 999){
+            $numero= $code.'00'.$id.''.$a.''.$b.''.$c;
+        }else{
+            $numero= $code.''.$id.''.$a.''.$b.''.$c;
+        }
+
+        $fiche= Fiche::create([
+            'numero' => $numero,
+            'description' => $request->input('description'),
+            'antecedents' => $request->input('antecedents'),
+            'status' => $request->input('pathologies'),
+        ]);
+
+        $notificateur= Notificateur::create([
+            'pre' => $numero,
+            'description' => $request->input('description'),
+            'antecedents' => $request->input('antecedents'),
+            'status' => $request->input('pathologies'),
+        ]);
+
+
+        $produit= Produit::create([
+            'nom_medicament' => $request->input('nom_medicament'),
+            'forme_pharmaceutique' => $request->input('forme_pharmaceutique'),
+            'dci' => $request->input('dci'),
+            'phone' => $request->input('phone'),
+            'adresse' => $request->input('adresse'),
+            'presentation' => $request->input('presentation'),
+            'indication' => $request->input('indication'),
+            'classe_therapeutique' => $request->input('classe_therapeutique'),
+            'enreg_id' => $enreg->id,
+            'pght' => $request->input('pght'),
+            'email' => $request->input('email'),
+            'manufacturer' => $request->input('manufacturer'),
+            'excipient'     => $request->input('excipient'),
+            'excipient_notoire' => $request->input('excipient_notoire')
+        ]);
+
     }
 
     /**
