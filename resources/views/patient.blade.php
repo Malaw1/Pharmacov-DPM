@@ -37,7 +37,7 @@
     <h1>Page des patients</h1>
 
     <br>
-    <a class="btn btn-primary" href="javascript:void(0) " id="btnUpload" class="mb-2">Ajoouter un patient</a>
+    <a class="btn btn-primary" href="javascript:void(0) " id="btnAjoutFiche" class="mb-2">Ajoouter un patient</a>
     <br><br>
     <table class="table table-bordered  " id="tablePatient">
         <thead class="table-header">
@@ -156,191 +156,191 @@
                 ]
             });
 
-            // $('#btnUpload').click(function () {
+            $('#btnAjoutFiche').click(function () {
 
-            //     $('#titleModal').html('Uploader un fichier');
+                $('#titleModal').html('Uploader un fichier');
 
-            //     $('#btnSave').val('Upload');
+                $('#btnSave').val('Upload');
 
-            //     $('#FormPatient').trigger('reset');
+                $('#FormPatient').trigger('reset');
 
-            //     $('#PatientModal').modal('show');
-            // });
+                $('#PatientModal').modal('show');
+            });
 
 
-            // migrer le dossier dans la base
+            migrer le dossier dans la base
 
-            // $('#btnSaveDossier').click(function (e) {
+            $('#btnSaveDossier').click(function (e) {
 
-            //     e.preventDefault();
+                e.preventDefault();
 
-            //     $(this).html('sending..');
+                $(this).html('sending..');
 
-            //     $.ajax({
-            //         data: $('#FormDossier').serialize(),
-            //         url: " ",
-            //         type: "post",
-            //         dataType: "json",
-            //         success: function (data) {
-            //             console.log('le dossier est cree');
-            //             console.log(data);
+                $.ajax({
+                    data: $('#FormDossier').serialize(),
+                    url: " ",
+                    type: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        console.log('le dossier est cree');
+                        console.log(data);
 
-            //             $('#formDossier').trigger('reset');
+                        $('#formDossier').trigger('reset');
 
-            //             $('#DossierModal').modal('hide');
+                        $('#DossierModal').modal('hide');
 
-            //             Swal.fire(
-            //                 'Succes!',
-            //                 'Le produit a ete ajoute!',
-            //                 'success'
-            //             )
+                        Swal.fire(
+                            'Succes!',
+                            'Le produit a ete ajoute!',
+                            'success'
+                        )
 
-            //         },
-            //         error: function (data) {
-            //             console.log('ca ne marche pas')
-            //             console.log('erreur' + data);
+                    },
+                    error: function (data) {
+                        console.log('ca ne marche pas')
+                        console.log('erreur' + data);
 
-            //             $('#btnSaveDossier').html('creer un dossier');
+                        $('#btnSaveDossier').html('creer un dossier');
 
-            //         }
-            //     });
+                    }
+                });
 
-            // });
+            });
 
 
             //migrer le fichier
 
-            // $('#FormPatient').on('submit', function (e) {
+            $('#FormPatient').on('submit', function (e) {
 
-            //     e.preventDefault();
+                e.preventDefault();
 
-            //     $('#btnSave').html('sending..');
+                $('#btnSave').html('sending..');
 
-            //     var dataForm = new FormData(this);
+                var dataForm = new FormData(this);
 
-            //     $.ajax({
-            //         data: dataForm,
-            //         url: " ",
-            //         method: "POST",
-            //         dataType: 'JSON',
-            //         contentType: false,
-            //         cache: false,
-            //         processData: false,
-            //         success: function (data) {
-            //             console.log('ca marche');
-            //             $('#PatientModal').modal('hide');
-            //             chart();
-            //             table.draw();
-            //         },
-            //         error: function (data) {
-            //             console.log('ca ne marche pas');
-            //             console.log('erreur ' + data);
+                $.ajax({
+                    data: dataForm,
+                    url: " ",
+                    method: "POST",
+                    dataType: 'JSON',
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function (data) {
+                        console.log('ca marche');
+                        $('#PatientModal').modal('hide');
+                        chart();
+                        table.draw();
+                    },
+                    error: function (data) {
+                        console.log('ca ne marche pas');
+                        console.log('erreur ' + data);
 
-            //             $('#btnSave').html('uploader un fichier');
+                        $('#btnSave').html('uploader un fichier');
 
-            //         }
-            //     });
+                    }
+                });
 
-            // });
+            });
 
-            // $('body').on('click', '.editBtn', function () {
+            $('body').on('click', '.editBtn', function () {
 
-            //     var file_id = $(this).data('id');
+                var file_id = $(this).data('id');
 
-            //     $('#PatientModal').trigger('reset');
+                $('#PatientModal').trigger('reset');
 
-            //     $.get("" + '/' + file_id, function (data) {
-            //         $('#titleModal').html('Modifier fichier');
-            //         $('#btnSave').html('modifier');
-            //         $('#PatientModal').modal('show');
-            //         $('#file_id').val(file_id);
-            //         $('#nomFichier').val(data.nom);
-            //         $('#folder').val(data.dossier.nomDossier);
+                $.get("" + '/' + file_id, function (data) {
+                    $('#titleModal').html('Modifier fichier');
+                    $('#btnSave').html('modifier');
+                    $('#PatientModal').modal('show');
+                    $('#file_id').val(file_id);
+                    $('#nomFichier').val(data.nom);
+                    $('#folder').val(data.dossier.nomDossier);
 
-            //     });
-            // });
+                });
+            });
 
-            // $('body').on('click', '.deleteBtn', function () {
+            $('body').on('click', '.deleteBtn', function () {
 
-            //     const swalWithBootstrapButtons = Swal.mixin({
-            //         customClass: {
-            //             confirmButton: 'btn btn-success',
-            //             cancelButton: 'btn btn-danger'
-            //         },
-            //         buttonsStyling: false
-            //     });
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-danger'
+                    },
+                    buttonsStyling: false
+                });
 
-            //     swalWithBootstrapButtons.fire({
-            //         title: 'Are you sure?',
-            //         text: "You won't be able to revert this!",
-            //         icon: 'warning',
-            //         showCancelButton: true,
-            //         confirmButtonText: 'Yes, delete it!',
-            //         cancelButtonText: 'No, cancel!',
-            //         reverseButtons: true
-            //     }).then((result) => {
-            //         if (result.value) {
+                swalWithBootstrapButtons.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'No, cancel!',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.value) {
 
-            //             var file_id = $(this).data('id');
+                        var file_id = $(this).data('id');
 
-            //             $.ajax({
-            //                 type: 'DELETE',
-            //                 url: "{" + '/' + file_id,
-            //                 success: function (data) {
-            //                     table.draw();
-            //                 },
+                        $.ajax({
+                            type: 'DELETE',
+                            url: "{" + '/' + file_id,
+                            success: function (data) {
+                                table.draw();
+                            },
 
-            //                 error: function (data) {
+                            error: function (data) {
 
-            //                     console.log('la suppresion ne marche pas');
-            //                     console.log(data);
-            //                 }
+                                console.log('la suppresion ne marche pas');
+                                console.log(data);
+                            }
 
-            //             });
+                        });
 
-            //             swalWithBootstrapButtons.fire(
-            //                 'Deleted!',
-            //                 'Your file has been deleted.',
-            //                 'success'
-            //             )
-            //         } else if (
-            //             /* Read more about handling dismissals below */
-            //             result.dismiss === Swal.DismissReason.cancel
-            //         ) {
-            //             swalWithBootstrapButtons.fire(
-            //                 'Cancelled',
-            //                 'Your imaginary file is safe :)',
-            //                 'error'
-            //             )
-            //         }
-            //     });
+                        swalWithBootstrapButtons.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    } else if (
+                        /* Read more about handling dismissals below */
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        swalWithBootstrapButtons.fire(
+                            'Cancelled',
+                            'Your imaginary file is safe :)',
+                            'error'
+                        )
+                    }
+                });
 
 
-            // });
+            });
 
-            // $('#folder').on('input', function () {
+            $('#folder').on('input', function () {
 
-            //     var champ = $('#folder').val();
+                var champ = $('#folder').val();
 
-            //     $.ajax({
-            //         data: {champ: champ},
-            //         url: "{,
-            //         Type: 'POST',
-            //         dataType: 'JSON',
-            //         success: function (data) {
-            //             console.log(data.check);
-            //             if (!data.check) {
-            //                 // si le dossier entré n'existe pas on desactive le bouton envoyer
-            //                 $('#btnSave').prop('disabled', true);
-            //             } else {
-            //                 // s'il existe on active le bouton
-            //                 $('#btnSave').prop('disabled', false);
+                $.ajax({
+                    data: {champ: champ},
+                    url: "{,
+                    Type: 'POST',
+                    dataType: 'JSON',
+                    success: function (data) {
+                        console.log(data.check);
+                        if (!data.check) {
+                            // si le dossier entré n'existe pas on desactive le bouton envoyer
+                            $('#btnSave').prop('disabled', true);
+                        } else {
+                            // s'il existe on active le bouton
+                            $('#btnSave').prop('disabled', false);
 
-            //             }
-            //         }
+                        }
+                    }
 
-            //     })
-            // });
+                })
+            });
 
         });
 

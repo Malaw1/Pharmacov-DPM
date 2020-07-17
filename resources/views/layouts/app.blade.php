@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+
+    @yield('css')
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -18,8 +21,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-    @yield('header')
 </head>
 <body>
     <div id="app">
@@ -78,8 +79,8 @@
             @yield('content')
         </main>
     </div>
+    @yield('script')
 
 </body>
-@yield('footer_script')
 
 </html>

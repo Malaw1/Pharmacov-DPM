@@ -15,7 +15,7 @@
                 <p>Remplir tous les champs avec une étoile * pour aller au suivant</p>
                 <div class="row">
                     <div class="col-md-12 mx-0">
-                        <form id="msform">
+                        <form id="msform" action=" {{route('fiche.store')}} " method="POST">
                             <!-- progressbar -->
                             <ul id="progressbar">
                                 <li class="active" id="account"><strong>Notificateur</strong></li>
@@ -277,7 +277,7 @@
                                 <div class="form-card">
                                     <h2 class="fs-title text-center">Success !</h2> <br><br>
                                     <div class="row justify-content-center">
-                                        <div class="col-3"> <img src="https://img.icons8.com/color/96/000000/ok--v2.png" class="fit-image"> </div>
+
                                     </div> <br><br>
                                     <div class="row justify-content-center">
                                         <div class="col-7 text-center">
@@ -286,7 +286,7 @@
                                     </div>
                                 </div>
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                                <input type="button" name="next" class="next action-button" value="Confirmer" />
+                                <input type="submit" name="confirmer" class="next action-button" value="Confirmer" />
                             </fieldset>
 
                         </form>
