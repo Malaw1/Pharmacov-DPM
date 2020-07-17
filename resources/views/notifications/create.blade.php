@@ -15,7 +15,8 @@
                 <p>Remplir tous les champs avec une étoile * pour aller au suivant</p>
                 <div class="row">
                     <div class="col-md-12 mx-0">
-                        <form id="msform">
+                        <form id="msform" action="{{ route('fiches.store') }}" method="POST">
+                            @csrf
                             <!-- progressbar -->
                             <ul id="progressbar">
                                 <li class="active" id="account"><strong>Notificateur</strong></li>
@@ -237,8 +238,8 @@
                                         <div class="form-group">
                                             <!-- <label for="sexe" class="control-label">Sexe</label> -->
                                             <div class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" id="plante" name="sexe" value="Oui" class="custom-control-input">
-                                                <label class="custom-control-label" for="plante">F</label>
+                                                <input type="radio" id="plante1" name="sexe" value="Oui" class="custom-control-input">
+                                                <label class="custom-control-label" for="plante1">Oui</label>
                                             </div>
                                             <div class="custom-control custom-radio custom-control-inline">
                                                 <input type="radio" id="plante" name="plante_medicinale" value="Non" class="custom-control-input">
@@ -302,8 +303,8 @@
                                         <label for="readministration" class="control-label">Réadministration</label>
                                         <div class="col-sm-12">
                                             <div class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" id="readministration" name="readministration" value="Oui" class="custom-control-input">
-                                                <label class="custom-control-label" for="plante">Oui</label>
+                                                <input type="radio" id="readministration1" name="readministration" value="Oui" class="custom-control-input">
+                                                <label class="custom-control-label" for="readministration1">Oui</label>
                                             </div>
                                             <div class="custom-control custom-radio custom-control-inline">
                                                 <input type="radio" id="readministration" name="readministration" value="Non" class="custom-control-input">
@@ -316,8 +317,8 @@
                                         <label for="reapparition" class="control-label">Réapparition</label>
                                         <div class="col-sm-12">
                                             <div class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" id="reapparition" name="reapparition" value="Oui" class="custom-control-input">
-                                                <label class="custom-control-label" for="reapparition">Oui</label>
+                                                <input type="radio" id="reapparition1" name="reapparition" value="Oui" class="custom-control-input">
+                                                <label class="custom-control-label" for="reapparition1">Oui</label>
                                             </div>
                                             <div class="custom-control custom-radio custom-control-inline">
                                                 <input type="radio" id="reapparition" name="reapparition" value="Non" class="custom-control-input">

@@ -21,4 +21,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('patient', 'PatientController');
 
-Route::resource('notifications', 'FicheController');
+Route::resource('fiches', 'FicheController');
