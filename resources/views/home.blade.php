@@ -31,12 +31,16 @@ crossorigin="anonymous"></script>
 
 @endsection
 @section('content')
+
+<div class="container">
 <table class="table table-bordered  " id="ficheTable">
     <thead class="table-header">
     <tr>
-        <th>No</th>
-        <th>Numero</th>
-        <th>Numero dossier patient </th>
+        <th>Code</th>
+        <th>N° Dossier Patient </th>
+        <th>Medicaments </th>
+        <th>Effets</th>
+        <th>Apparition de l'effet</th>
         <th width="100px">Action</th>
     </tr>
     </thead>
@@ -44,6 +48,8 @@ crossorigin="anonymous"></script>
 
     </tbody>
 </table>
+</div>
+
 @endsection
 @section('footer_script')
 <script src="">
@@ -55,9 +61,11 @@ crossorigin="anonymous"></script>
 "ajax": "{{route('patient.index')}}",
 
 columns: [
-    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+    // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
     {data: 'numero', name: 'numero'},
     {data: 'numero_dossier', name: 'numero_dossier'},
+    {data: 'medicament', name: 'medicament'},
+    {data: 'effet', name: 'effet'},
     {data: 'action', name: 'action', orderable: false, searchable: false},
 ]
 });
