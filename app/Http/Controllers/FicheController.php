@@ -51,7 +51,7 @@ class FicheController extends Controller
      */
     public function create()
     {
-        return view('notifications.index');
+        return view('notifications.create');
     }
 
     /**
