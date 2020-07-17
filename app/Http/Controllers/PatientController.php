@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Patient;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class PatientController extends Controller
 {
@@ -12,9 +13,30 @@ class PatientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->ajax()) {
+
+            $data = Patient::with('dossier', 'user')->where('sup', '=', false)->latest()->get();
+
+            // prendre les données dans file et le passé a DataTable
+            //tout en creant la colonne action et ces boutons
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+
+                    $btn = ' <a href="javascript: void(0)" data-toggle = "tooltip" data-id =' . $row->id . ' data-original-title ="Edit" class=" btn btn-warning btn-sm mr-1 editBtn "> <i class="fas fa-user-edit"></i> </a> ';
+                    $btn = $btn . ' <a href="javascript: void(0)" data-toggle = "tooltip" data-id = ' . $row->id . ' data-original-title = " Supprimer " class=" btn btn-sm btn-danger btn-sm  deleteBtn"> <i class="fa fa-trash"></i></a> ';
+
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+
+        }
+
+        return view('patient');
     }
 
     /**
@@ -35,7 +57,11 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Patient::updateOrCreate(['id' => $request->product_id],
+
+        ['name' => $request->name, 'detail' => $request->detail]);
+
+        return response()->json(['success'=>'Product saved successfully.']);
     }
 
     /**
@@ -46,7 +72,7 @@ class PatientController extends Controller
      */
     public function show(Patient $patient)
     {
-        //
+
     }
 
     /**

@@ -19,6 +19,7 @@ class CreateMedicamentsTable extends Migration
             $table->string('voie');
             $table->string('posologie');
             $table->string('forme');
+            $table->string('dci');
             $table->string('lot');
             $table->string('fabricant');
             $table->string('plante_medicinale')->nullable();

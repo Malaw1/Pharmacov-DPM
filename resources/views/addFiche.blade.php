@@ -1,19 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href=" {{asset('css/wizard.css')}} ">
+@extends('layouts.app')
+@section('header')
+<link rel="stylesheet" href=" {{asset('css/wizard.css')}} ">
     <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'></script>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-    <link rel="stylesheet" href=" {{asset('css/wizard.css')}} ">
-</head>
-<body>
-<!-- MultiStep Form -->
+@endsection
+@section('content')
 <div class="container-fluid" id="grad1">
     <div class="row justify-content-center mt-0">
         <div class="col-11 col-sm-9 col-md-7 col-lg-6 text-center p-0 mt-3 mb-2">
@@ -50,6 +43,12 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
+                                                <label for="email" class="control-label">Email</label>
+                                                <div class="col-sm-12">
+                                                    <input type="text" name="email" id="email" class="form-control " required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="fonction" class="control-label">Fonction</label>
                                                 <div class="col-sm-12">
                                                     <input type="text" name="fonction" id="fonction" class="form-control " required>
@@ -57,15 +56,23 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="adresse" class="control-label">Adresse</label>
+                                                <label for="specialite" class="control-label">specialite</label>
                                                 <div class="col-sm-12">
-                                                    <input type="text" name="adresse" id="adresse" class="form-control " required>
+                                                    <input type="text" name="specialite" id="specialite" class="form-control " required>
                                                 </div>
                                             </div>
+
                                             <div class="form-group">
                                                 <label for="tel" class="control-label">Téléphone</label>
                                                 <div class="col-sm-12">
                                                     <input type="text" name="tel" id="tel" class="form-control " required>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="structure" class="control-label">Structure</label>
+                                                <div class="col-sm-12">
+                                                    <input type="text" name="structure" id="structure" class="form-control " required>
                                                 </div>
                                             </div>
                                 </div> <input type="button" name="next" class="next action-button" value="Next Step" />
@@ -289,7 +296,7 @@
         </div>
     </div>
 </div>
+@endsection
+@section('footer_script')
 <script src=" {{asset('js/wizard.js')}} "></script>
-</body>
-
-</html>
+@endsection
