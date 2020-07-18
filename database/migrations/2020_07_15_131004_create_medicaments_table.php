@@ -25,8 +25,6 @@ class CreateMedicamentsTable extends Migration
             $table->string('plante_medicinale')->nullable();
             $table->datetime('date_prise');
             $table->datetime('date_fin_prise');
-            $table->unsignedBigInteger('fiche_id');
-            $table->foreign('fiche_id')->references('id')->on('fiches');
             $table->timestamps();
         });
     }

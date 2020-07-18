@@ -11,7 +11,6 @@
 |
 */
 
-
 Route::get('/', function () {
     return view('test');
 });
@@ -22,4 +21,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('patient', 'PatientController');
 
-Route::resource('fiche', 'FicheController');
+Route::resource('fiches', 'FicheController');

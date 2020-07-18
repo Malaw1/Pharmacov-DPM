@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Fiche;
-use App\Patient;
-use App\Medicament;
+use App\Models\Patient;
+use App\Models\Medicament;
 use Yajra\DataTables\Facades\DataTables;
 
 class HomeController extends Controller
@@ -33,13 +33,13 @@ class HomeController extends Controller
         $fiche = 0;
             if ($request->ajax()) {
 
-                $data = Fiche::with('patients', 'medicaments')->latest()->get();
+                $data = Fiche::with('patient', 'medicament')->latest()->get();
 
                 return DataTables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function ($row) {
 
-                        $btn = ' <a href="javascript: void(0)" data-toggle = "tooltip" data-id =' . $row->id . ' data-original-title ="Edit" class=" btn btn-warning btn-sm mr-1 editBtn "> <i class="fas fa-user-edit"></i> </a> ';
+                        $btn = ' <a href="javascript: void(0)" data-toggle = "tooltip" data-id =' . $row->id . ' data-original-title ="Edit" class=" btn btn-warning btn-sm mr-1 editBtn "> <i class="fa fa-wrench"></i> </a> ';
                         $btn = $btn . ' <a href="javascript: void(0)" data-toggle = "tooltip" data-id = ' . $row->id . ' data-original-title = " Supprimer " class=" btn btn-sm btn-danger btn-sm  deleteBtn"> <i class="fa fa-trash"></i></a> ';
 
                         return $btn;

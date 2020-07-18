@@ -7,11 +7,12 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Patient
- *
+ * 
  * @property int $id
  * @property string $numero_dossier
  * @property string $initial
@@ -22,6 +23,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $facteur_associe
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * 
+ * @property Collection|Fich[] $fiches
  *
  * @package App\Models
  */
@@ -37,10 +40,10 @@ class Patient extends Model
 		'poids',
 		'taille',
 		'facteur_associe'
-    ];
+	];
 
-    public function fiche()
+	public function fiches()
 	{
-		return $this->belongsTo(Fich::class, 'fiche_id');
+		return $this->hasMany(Fich::class);
 	}
 }

@@ -168,7 +168,6 @@
             });
 
 
-            migrer le dossier dans la base
 
             $('#btnSaveDossier').click(function (e) {
 

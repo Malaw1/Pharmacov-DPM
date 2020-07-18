@@ -7,11 +7,12 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Medicament
- *
+ * 
  * @property int $id
  * @property string $produit
  * @property string $voie
@@ -23,21 +24,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $plante_medicinale
  * @property Carbon $date_prise
  * @property Carbon $date_fin_prise
- * @property int $fiche_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- *
- * @property Fich $fich
+ * 
+ * @property Collection|Fich[] $fiches
  *
  * @package App\Models
  */
 class Medicament extends Model
 {
 	protected $table = 'medicaments';
-
-	protected $casts = [
-		'fiche_id' => 'int'
-	];
 
 	protected $dates = [
 		'date_prise',
@@ -54,12 +50,11 @@ class Medicament extends Model
 		'fabricant',
 		'plante_medicinale',
 		'date_prise',
-		'date_fin_prise',
-		'fiche_id'
+		'date_fin_prise'
 	];
 
-	public function fiche()
+	public function fiches()
 	{
-		return $this->belongsTo(Fich::class, 'fiche_id');
+		return $this->hasMany(Fich::class);
 	}
 }

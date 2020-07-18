@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -17,11 +18,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $nom
  * @property string $email
  * @property string $fonction
+ * @property string $adresse_structure
  * @property string $structure
  * @property string $specialite
  * @property string $telephone
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * 
+ * @property Collection|Fich[] $fiches
  *
  * @package App\Models
  */
@@ -34,8 +38,14 @@ class Notificateur extends Model
 		'nom',
 		'email',
 		'fonction',
+		'adresse_structure',
 		'structure',
 		'specialite',
 		'telephone'
 	];
+
+	public function fiches()
+	{
+		return $this->hasMany(Fich::class);
+	}
 }

@@ -18,10 +18,15 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $description
  * @property string|null $antecedents
  * @property string $pathologies
+ * @property int $patient_id
+ * @property int $medicament_id
+ * @property int $notificateur_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  *
- * @property Collection|Medicament[] $medicaments
+ * @property Medicament $medicament
+ * @property Notificateur $notificateur
+ * @property Patient $patient
  * @property Collection|Suivi[] $suivis
  *
  * @package App\Models
@@ -30,21 +35,35 @@ class Fiche extends Model
 {
 	protected $table = 'fiches';
 
+	protected $casts = [
+		'patient_id' => 'int',
+		'medicament_id' => 'int',
+		'notificateur_id' => 'int'
+	];
+
 	protected $fillable = [
 		'numero',
 		'description',
 		'antecedents',
-		'pathologies'
+		'pathologies',
+		'patient_id',
+		'medicament_id',
+		'notificateur_id'
 	];
 
-	public function medicaments()
+	public function medicament()
 	{
-		return $this->hasMany(Medicament::class, 'fiche_id');
-    }
+		return $this->belongsTo(Medicament::class);
+	}
 
-    public function patient()
+	public function notificateur()
 	{
-		return $this->hasMany(Patient::class, 'fiche_id');
+		return $this->belongsTo(Notificateur::class);
+	}
+
+	public function patient()
+	{
+		return $this->belongsTo(Patient::class);
 	}
 
 	public function suivis()
