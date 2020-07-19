@@ -89,7 +89,6 @@ class FicheController extends Controller
                 'posologie' => $request->input('posologie'),
                 'forme' => $request->input('forme'),
                 'lot' => $request->input('lot'),
-                'antecedents' => $request->input('antecedents'),
                 'fabricant' => $request->input('fabricant'),
                 'date_prise' => $request->input('date_prise'),
                 'date_fin_prise' => $request->input('date_fin_prise'),
@@ -185,8 +184,11 @@ class FicheController extends Controller
      * @param  \App\Fiche  $fiche
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Fiche $fiche)
+    public function destroy($id)
     {
-        //
+        $fiche = Fiche::with('suivis')->find($id);
+        $fiche->suivis()->delete();
+        $fiche->delete();
+        return response()->json($fiche);
     }
 }

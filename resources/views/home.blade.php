@@ -533,7 +533,8 @@
     <script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     <!-- End SmartWizard Content -->
     <script src=" {{asset('vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js')}} "></script>
-
+    <!-- sweetalert2 -->
+    <script src="{{asset('js/sweetalert2/sweetalert2.all.min.js')}}"></script>
     <!-- FastClick -->
     <script src="{{asset('vendors/fastclick/lib/fastclick.js')}}"></script>
     <!-- NProgress -->
@@ -607,19 +608,18 @@
         // fin de la configuration du dataTable
 
         $('#btnAjoutFiche').click(function () {
-
             $('#titleModal').html("Formulaire pour signaler un médicament");
-
-            $('#buttonFinish').html('Finish');
-            $('#telehone').val(' ');
+            $('.buttonFinish').html('Finish');
             $('#FormFiche').trigger('reset');
             $('#FicheModal').modal('show');
+
         });
 
         /* prendre les valeurs des differents champs et l'afficher dans le fieldset check
          pour que l'utilisateur puisse verifier les informations entrées*/
 
-         $('#nextToCheck').click(function (){
+         $('.buttonNext').on('click',function (){
+             console.log('je suis la');
             $prenom = $("input[name='prenom']").val();
             $nom = $("input[name='nom']").val();
             $fonction = $("input[name='fonction']").val();
@@ -719,11 +719,16 @@
                     window.location.href = "{{route('home')}}"+'/'+"#step-1";
                     $('#FicheModal').modal('hide');
                     table.draw();
+                    Swal.fire(
+                        'Succes!',
+                        'Le produit a ete ajoute!',
+                        'success'
+                    )
                 },
                 error: function (data) {
                     console.log('ca ne marche pas');
                     console.log('erreur ' + data);
-                    window.location.href = "{{route('home')}}"+'/'+"#step-1";
+                    window.location.href = "{{route('home')}}";
 
                     $('.buttonFinish').html('Réessayer');
 
@@ -782,6 +787,63 @@
             });
         });
 
+        //la supression d'un enregistrement
+        $('body').on('click', '.deleteBtn', function () {
+
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            });
+
+            swalWithBootstrapButtons.fire({
+                title: 'Attention !',
+                text: "Etes vous sure de vouloir supprimer?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Oui, supprimer!',
+                cancelButtonText: 'Non, annuler!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+
+                    var fiche_id = $(this).data('id');
+                    $.ajax({
+                        type: 'DELETE',
+                        url: " {{route('fiches.store')}}"+'/'+fiche_id,
+                        success: function (data) {
+                            table.draw();
+                        },
+
+                        error: function (data) {
+
+                            console.log('la suppresion ne marche pas');
+                            console.log(data);
+                        }
+
+                    });
+
+                    swalWithBootstrapButtons.fire(
+                        'Supprimé!',
+                        'L\'enregistrement a été supprimé.',
+                        'success'
+                    )
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Annulé',
+                        'Suppression annulée :)',
+                        'error'
+                    )
+                }
+            });
+
+
+        });
 
     </script>
 @endsection
