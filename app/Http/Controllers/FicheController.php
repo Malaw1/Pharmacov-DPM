@@ -89,6 +89,7 @@ class FicheController extends Controller
                 'posologie' => $request->input('posologie'),
                 'forme' => $request->input('forme'),
                 'lot' => $request->input('lot'),
+                'antecedents' => $request->input('antecedents'),
                 'fabricant' => $request->input('fabricant'),
                 'date_prise' => $request->input('date_prise'),
                 'date_fin_prise' => $request->input('date_fin_prise'),
@@ -157,12 +158,13 @@ class FicheController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Fiche  $fiche
+     *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Fiche $fiche)
+    public function edit($id)
     {
-        //
+        $fiche = Fiche::with('patient','medicament','suivis','notificateur')->find($id);
+        return response()->json($fiche);
     }
 
     /**

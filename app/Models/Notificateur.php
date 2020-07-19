@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Notificateur
- * 
+ *
  * @property int $id
  * @property string $prenom
  * @property string $nom
@@ -24,8 +24,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $telephone
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * 
- * @property Collection|Fich[] $fiches
+ *
+ * @property Collection|Fiche[] $fiches
  *
  * @package App\Models
  */
@@ -46,6 +46,6 @@ class Notificateur extends Model
 
 	public function fiches()
 	{
-		return $this->hasMany(Fich::class);
+		return $this->hasMany(Fiche::class);
 	}
 }

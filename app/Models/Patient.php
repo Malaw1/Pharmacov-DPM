@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Patient
- * 
+ *
  * @property int $id
  * @property string $numero_dossier
  * @property string $initial
@@ -23,8 +23,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $facteur_associe
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * 
- * @property Collection|Fich[] $fiches
+ *
+ * @property Collection|Fiche[] $fiches
  *
  * @package App\Models
  */
@@ -44,6 +44,6 @@ class Patient extends Model
 
 	public function fiches()
 	{
-		return $this->hasMany(Fich::class);
+		return $this->hasMany(Fiche::class);
 	}
 }

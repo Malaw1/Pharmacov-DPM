@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Medicament
- * 
+ *
  * @property int $id
  * @property string $produit
  * @property string $voie
@@ -26,8 +26,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $date_fin_prise
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * 
- * @property Collection|Fich[] $fiches
+ *
+ * @property Collection|Fiche[] $fiches
  *
  * @package App\Models
  */
@@ -55,6 +55,6 @@ class Medicament extends Model
 
 	public function fiches()
 	{
-		return $this->hasMany(Fich::class);
+		return $this->hasMany(Fiche::class);
 	}
 }

@@ -154,7 +154,6 @@
                                           </span>
                                             </a>
                                         </li>
-
                                     </ul>
                                     <div id="step-1">
                                         <div class="form-card">
@@ -292,12 +291,6 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="antecedents" class="control-label">antecedents</label>
-                                                <div class="col-sm-12">
-                                                    <input type="text" name="antecedents" id="antecedents" class="form-control " required>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
                                                 <label for="forme" class="control-label">Forme</label>
                                                 <div class="col-sm-12">
                                                     <input type="text" name="forme" id="forme" class="form-control " required>
@@ -414,7 +407,7 @@
                                         </div>
                                     </div>
                                     <div id="step-6">
-                                        <div class="col-md-10 col-sm-6 col-xs-12 justify-content-center">
+                                        <div class="col-md-12 col-sm-12 col-xs-12 justify-content-center">
                                             <div class="x_panel">
                                                 <div class="x_title">
                                                     <h2><i class="fa fa-bars"></i> Vérifier les informations entrées !</h2>
@@ -517,9 +510,6 @@
 
                                                 </div>
                                             </div>
-                                            <div class="text-right">
-                                                <input type="submit" id="btnSignaler" value="Envoyer" class="btn btn-success">
-                                            </div>
                                         </div>
 
                                     </div>
@@ -620,10 +610,9 @@
 
             $('#titleModal').html("Formulaire pour signaler un médicament");
 
-            $('#btnSave').val('Signaler');
-
-            $('#msform').trigger('reset');
-
+            $('#buttonFinish').html('Finish');
+            $('#telehone').val(' ');
+            $('#FormFiche').trigger('reset');
             $('#FicheModal').modal('show');
         });
 
@@ -713,7 +702,7 @@
 
             e.preventDefault();
 
-            $('#btnSignaler').val('sending..');
+            $('.buttonFinish').html('sending..');
 
             var dataForm = new FormData(this);
 
@@ -727,19 +716,72 @@
                 processData: false,
                 success: function (data) {
                     console.log('ca marche');
+                    window.location.href = "{{route('home')}}"+'/'+"#step-1";
                     $('#FicheModal').modal('hide');
                     table.draw();
                 },
                 error: function (data) {
                     console.log('ca ne marche pas');
                     console.log('erreur ' + data);
+                    window.location.href = "{{route('home')}}"+'/'+"#step-1";
 
-                    $('#btnSave').html('uploader un fichier');
+                    $('.buttonFinish').html('Réessayer');
 
                 }
             });
 
             });
+
+        // modification d'un enregistrement
+        $('body').on('click', '.editBtn', function () {
+            var fiche_id = $(this).data('id');
+            $.get("{{route('fiches.edit',12345)}}".replace(/12345/,fiche_id.toString()), function (data) {
+                $('#titleModal').html('Modification');
+                $('#btnEnvoyer').html('modifier');
+                $('#id_fiche').val('fiche_id');
+                $("input[name='prenom']").val(data.notificateur.prenom);
+                $("input[name='nom']").val(data.notificateur.nom);
+                $("input[name='fonction']").val(data.notificateur.fonction);
+                $("input[name='adresse_structure']").val(data.notificateur.adresse_structure);
+                $("input[name='email']").val(data.notificateur.email);
+                $("input[name='structure']").val(data.notificateur.structure);
+                $("input[name='specialite']").val(data.notificateur.specialite);
+                $("input[name='telephone']").val(data.notificateur.telephone);
+                $("input[name='numero_dossier']").val(data.patient.numero_dossier);
+                $("input[name='initial']").val(data.patient.initial);
+                $("input[name='age']").val(data.patient.age);
+                $("input[name='sexe']").val(data.patient.sexe);
+                $("input[name='poids']").val(data.patient.poids);
+                $("input[name='taille']").val(data.patient.taille);
+                $("input[name='facteur_associe']").val(data.patient.facteur_associe);
+                $("input[name='produit']").val(data.medicament.produit);
+                $("input[name='dci']").val(data.medicament.dci);
+                $("input[name='voie']").val(data.medicament.voie);
+                $("input[name='posologie']").val(data.medicament.posologie);
+                $("input[name='description']").val(data.medicament.description);
+                $("input[name='forme']").val(data.medicament.forme);
+                $("input[name='lot']").val(data.medicament.lot);
+                $("input[name='fabricant']").val(data.medicament.fabricant);
+                $("input[name='plante_medicinale']").val(data.medicament.plante_medicinale);
+                $("input[name='date_prise']").val(data.medicament.date_prise);
+                $("input[name='date_fin_prise']").val(data.medicament.date_fin_prise);
+                $("input[name='pathologies']").val();
+                $("input[name='antecedents']").val();
+                $("input[name='description']").val();
+                $("input[name='apparition_effet']").val(data.suivis[0].apparition_effet);
+                $("input[name='disparition_effet']").val(data.suivis[0].disparition_effet);
+                $("input[name='readministration']").val(data.suivis[0].readministration);
+                $("input[name='reapparition']").val(data.suivis[0].reapparition);
+                $("input[name='traitement_correcteur']").val(data.suivis[0].traitement_correcteur);
+                $("input[name='suivi_patient']").val(data.suivis[0].suivi_patient);
+                $("input[name='evolution']").val(data.suivis[0].evolution);
+                $('#FicheModal').trigger('reset');
+
+                $('#FicheModal').modal('show');
+
+            });
+        });
+
 
     </script>
 @endsection

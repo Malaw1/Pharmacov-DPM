@@ -11,12 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('test');
-});
+
 
 Auth::routes(['verify' => true]);
 
+Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('patient', 'PatientController');

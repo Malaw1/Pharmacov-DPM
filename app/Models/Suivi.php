@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Suivi
- * 
+ *
  * @property int $id
  * @property Carbon $apparition_effet
  * @property Carbon $disparition_effet
@@ -23,8 +23,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $fiche_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * 
- * @property Fich $fich
+ *
+ * @property Fiche $fiche
  *
  * @package App\Models
  */
@@ -52,8 +52,8 @@ class Suivi extends Model
 		'fiche_id'
 	];
 
-	public function fich()
+	public function fiche()
 	{
-		return $this->belongsTo(Fich::class, 'fiche_id');
+		return $this->belongsTo(Fiche::class, 'fiche_id');
 	}
 }

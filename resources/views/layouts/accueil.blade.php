@@ -14,8 +14,9 @@
     <link href="{{asset('vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="{{asset('vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
-    <script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+
     <!-- jQuery -->
+    <script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
     @yield('header')
 
     <!-- Custom Theme Style -->.
